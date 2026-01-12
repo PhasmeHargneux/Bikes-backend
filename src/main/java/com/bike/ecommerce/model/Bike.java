@@ -15,7 +15,8 @@ public class Bike {
     private String description;
     private Double price;
 
-    public Bike() {}
+    public Bike() {
+    }
 
     public Bike(String name, String category, String description, Double price) {
         this.name = name;
