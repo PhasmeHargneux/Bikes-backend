@@ -14,6 +14,8 @@ public class RootController {
         Map<String, Object> response = new LinkedHashMap<>();
         response.put("message", "Welcome to the Bike E-commerce API");
         response.put("status", "Running");
+        response.put("auth_requirement",
+                "All protected endpoints require an 'Authentication' header with the secret token.");
 
         Map<String, Object> endpoints = new LinkedHashMap<>();
 
