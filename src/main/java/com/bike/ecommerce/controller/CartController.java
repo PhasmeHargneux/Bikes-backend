@@ -26,4 +26,14 @@ public class CartController {
     public Cart removeBikeFromCart(@PathVariable Long userId, @PathVariable Long bikeId) {
         return cartService.removeBikeFromCart(userId, bikeId);
     }
+
+    @PostMapping("/{userId}/accessories/{accessoryId}")
+    public Cart addAccessoryToCart(@PathVariable Long userId, @PathVariable Long accessoryId) {
+        return cartService.addAccessoryToCart(userId, accessoryId);
+    }
+
+    @DeleteMapping("/{userId}/accessories/{accessoryId}")
+    public Cart removeAccessoryFromCart(@PathVariable Long userId, @PathVariable Long accessoryId) {
+        return cartService.removeAccessoryFromCart(userId, accessoryId);
+    }
 }

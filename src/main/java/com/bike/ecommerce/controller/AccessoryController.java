@@ -1,8 +1,8 @@
 package com.bike.ecommerce.controller;
 
 import com.bike.ecommerce.exception.BadRequestException;
-import com.bike.ecommerce.model.Bike;
-import com.bike.ecommerce.service.BikeService;
+import com.bike.ecommerce.model.Accessory;
+import com.bike.ecommerce.service.AccessoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,27 +11,26 @@ import java.util.Map;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/bikes")
-public class BikeController {
+@RequestMapping("/accessories")
+public class AccessoryController {
 
     @Autowired
-    private BikeService bikeService;
+    private AccessoryService accessoryService;
 
-    private static final Set<String> ALLOWED_SEARCH_PARAMS = Set.of("category", "minPrice", "maxPrice");
+    private static final Set<String> ALLOWED_SEARCH_PARAMS = Set.of("minPrice", "maxPrice");
 
     @GetMapping
-    public List<Bike> getAllBikes() {
-        return bikeService.getAllBikes();
+    public List<Accessory> getAllAccessories() {
+        return accessoryService.getAllAccessories();
     }
 
     @GetMapping("/{id}")
-    public Bike getBikeById(@PathVariable Long id) {
-        return bikeService.getBikeById(id);
+    public Accessory getAccessoryById(@PathVariable Long id) {
+        return accessoryService.getAccessoryById(id);
     }
 
     @GetMapping("/search")
-    public List<Bike> searchBikes(
-            @RequestParam(required = false) String category,
+    public List<Accessory> searchAccessories(
             @RequestParam(required = false) Double minPrice,
             @RequestParam(required = false) Double maxPrice,
             @RequestParam Map<String, String> allParams) {
@@ -44,6 +43,6 @@ public class BikeController {
             }
         }
 
-        return bikeService.searchBikes(category, minPrice, maxPrice);
+        return accessoryService.filterByPrice(minPrice, maxPrice);
     }
 }

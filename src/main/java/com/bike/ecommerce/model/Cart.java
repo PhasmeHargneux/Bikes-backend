@@ -13,14 +13,15 @@ public class Cart {
     private Long userId;
 
     @ManyToMany
-    @JoinTable(
-        name = "cart_bikes",
-        joinColumns = @JoinColumn(name = "cart_id"),
-        inverseJoinColumns = @JoinColumn(name = "bike_id")
-    )
+    @JoinTable(name = "cart_bikes", joinColumns = @JoinColumn(name = "cart_id"), inverseJoinColumns = @JoinColumn(name = "bike_id"))
     private List<Bike> bikes = new ArrayList<>();
 
-    public Cart() {}
+    @ManyToMany
+    @JoinTable(name = "cart_accessories", joinColumns = @JoinColumn(name = "cart_id"), inverseJoinColumns = @JoinColumn(name = "accessory_id"))
+    private List<Accessory> accessories = new ArrayList<>();
+
+    public Cart() {
+    }
 
     public Cart(Long userId) {
         this.userId = userId;
@@ -48,5 +49,13 @@ public class Cart {
 
     public void setBikes(List<Bike> bikes) {
         this.bikes = bikes;
+    }
+
+    public List<Accessory> getAccessories() {
+        return accessories;
+    }
+
+    public void setAccessories(List<Accessory> accessories) {
+        this.accessories = accessories;
     }
 }
